@@ -6,6 +6,8 @@ import com.adminportal.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BookServiceImpl implements BookService {
     @Autowired
@@ -13,5 +15,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book save(Book book) {
         return bookRepository.save(book);
+    }
+
+    public List<Book> findAll(){
+        return (List<Book>) bookRepository.findAll();
     }
 }
