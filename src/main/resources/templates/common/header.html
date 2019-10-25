@@ -11,6 +11,7 @@
     <!--    data table-->
     <link th:href="@{/css/jquery.dataTables.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/dataTables.bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/font-awesom.min.css}" rel="stylesheet">
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>tinymce.init({selector: 'textarea'});</script>
 
@@ -44,7 +45,7 @@
                         <ul class="dropdown-menu">
                             <li><a th:href="@{/book/add}">Add a new book</a></li>
                             <li><a th:href="@{/book/bookList}">View book list</a></li>
-
+r
                         </ul>
                     </li>
                 </ul>
@@ -59,7 +60,7 @@
 <div th:fragment="body-bottom-scripts">
     <script th:src="@{/js/jquery.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
-<!--    data table-->
+    <!--    data table-->
     <script th:src="@{/js/jquery.dataTables.min.js}"></script>
     <script th:src="@{/js/dataTables.bootstrap.min.js}"></script>
 </div>
