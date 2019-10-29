@@ -6,8 +6,9 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "user_order")
+@Table(name="user_order")
 public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -15,19 +16,30 @@ public class Order {
     private Date shippingDate;
     private String shippingMethod;
     private String orderStatus;
-    private BigDecimal orederTotal;
+    private BigDecimal orderTotal;
 
-    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade=CascadeType.ALL )
     private List<CartItem> cartItemList;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL)
     private ShippingAddress shippingAddress;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL)
+    private BillingAddress billingAddress;
+
+    @OneToOne(cascade=CascadeType.ALL)
     private Payment payment;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private User user;
+
+    public BillingAddress getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(BillingAddress billingAddress) {
+        this.billingAddress = billingAddress;
+    }
 
     public Long getId() {
         return id;
@@ -69,12 +81,12 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public BigDecimal getOrederTotal() {
-        return orederTotal;
+    public BigDecimal getOrderTotal() {
+        return orderTotal;
     }
 
-    public void setOrederTotal(BigDecimal orederTotal) {
-        this.orederTotal = orederTotal;
+    public void setOrderTotal(BigDecimal orderTotal) {
+        this.orderTotal = orderTotal;
     }
 
     public List<CartItem> getCartItemList() {
@@ -108,4 +120,6 @@ public class Order {
     public void setUser(User user) {
         this.user = user;
     }
+
+
 }

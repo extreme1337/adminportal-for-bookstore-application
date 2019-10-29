@@ -4,18 +4,19 @@ import javax.persistence.*;
 
 @Entity
 public class BillingAddress {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String billingAddressName;
-    private String billingAddressStreet1;
-    private String billingAddressStreet2;
-    private String billingAddressCity;
-    private String billingAddressState;
-    private String billingAddressCountry;
-    private String billingAddressZipcode;
+    private String BillingAddressName;
+    private String BillingAddressStreet1;
+    private String BillingAddressStreet2;
+    private String BillingAddressCity;
+    private String BillingAddressState;
+    private String BillingAddressCountry;
+    private String BillingAddressZipcode;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE)
     private Order order;
 
     public Long getId() {
@@ -27,59 +28,59 @@ public class BillingAddress {
     }
 
     public String getBillingAddressName() {
-        return billingAddressName;
+        return BillingAddressName;
     }
 
     public void setBillingAddressName(String billingAddressName) {
-        this.billingAddressName = billingAddressName;
+        BillingAddressName = billingAddressName;
     }
 
     public String getBillingAddressStreet1() {
-        return billingAddressStreet1;
+        return BillingAddressStreet1;
     }
 
     public void setBillingAddressStreet1(String billingAddressStreet1) {
-        this.billingAddressStreet1 = billingAddressStreet1;
+        BillingAddressStreet1 = billingAddressStreet1;
     }
 
     public String getBillingAddressStreet2() {
-        return billingAddressStreet2;
+        return BillingAddressStreet2;
     }
 
     public void setBillingAddressStreet2(String billingAddressStreet2) {
-        this.billingAddressStreet2 = billingAddressStreet2;
+        BillingAddressStreet2 = billingAddressStreet2;
     }
 
     public String getBillingAddressCity() {
-        return billingAddressCity;
+        return BillingAddressCity;
     }
 
     public void setBillingAddressCity(String billingAddressCity) {
-        this.billingAddressCity = billingAddressCity;
+        BillingAddressCity = billingAddressCity;
     }
 
     public String getBillingAddressState() {
-        return billingAddressState;
+        return BillingAddressState;
     }
 
     public void setBillingAddressState(String billingAddressState) {
-        this.billingAddressState = billingAddressState;
+        BillingAddressState = billingAddressState;
     }
 
     public String getBillingAddressCountry() {
-        return billingAddressCountry;
+        return BillingAddressCountry;
     }
 
     public void setBillingAddressCountry(String billingAddressCountry) {
-        this.billingAddressCountry = billingAddressCountry;
+        BillingAddressCountry = billingAddressCountry;
     }
 
     public String getBillingAddressZipcode() {
-        return billingAddressZipcode;
+        return BillingAddressZipcode;
     }
 
     public void setBillingAddressZipcode(String billingAddressZipcode) {
-        this.billingAddressZipcode = billingAddressZipcode;
+        BillingAddressZipcode = billingAddressZipcode;
     }
 
     public Order getOrder() {
@@ -89,4 +90,5 @@ public class BillingAddress {
     public void setOrder(Order order) {
         this.order = order;
     }
+
 }

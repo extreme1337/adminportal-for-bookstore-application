@@ -8,25 +8,26 @@ import java.util.List;
 
 @Entity
 public class CartItem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int qty;
     private BigDecimal subtotal;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE)
     private Book book;
 
-    @OneToMany(mappedBy = "cartItem")
+    @OneToMany(mappedBy = "cartItem",cascade = CascadeType.MERGE)
     @JsonIgnore
     private List<BookToCartItem> bookToCartItemList;
 
-    @ManyToOne
-    @JoinColumn(name = "shopping_cart_id")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name="shopping_cart_id")
     private ShoppingCart shoppingCart;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name="order_id")
     private Order order;
 
     public Long getId() {
@@ -84,4 +85,6 @@ public class CartItem {
     public void setOrder(Order order) {
         this.order = order;
     }
+
+
 }

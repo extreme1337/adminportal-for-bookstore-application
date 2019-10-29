@@ -8,8 +8,9 @@ import java.util.List;
 
 @Entity
 public class Book {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String title;
     private String author;
@@ -25,23 +26,17 @@ public class Book {
     private double ourPrice;
     private boolean active=true;
 
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition="text")
     private String description;
     private int inStockNumber;
+
     @Transient
     private MultipartFile bookImage;
 
-    @OneToMany(mappedBy = "book")
+
+    @OneToMany(mappedBy = "book",cascade = CascadeType.MERGE)
     @JsonIgnore
-    private List<BookToCartItem> bookToCartItems;
-
-    public List<BookToCartItem> getBookToCartItems() {
-        return bookToCartItems;
-    }
-
-    public void setBookToCartItems(List<BookToCartItem> bookToCartItems) {
-        this.bookToCartItems = bookToCartItems;
-    }
+    private List<BookToCartItem> bookToCartItemList;
 
     public Long getId() {
         return id;
@@ -178,4 +173,14 @@ public class Book {
     public void setBookImage(MultipartFile bookImage) {
         this.bookImage = bookImage;
     }
+
+    public List<BookToCartItem> getBookToCartItemList() {
+        return bookToCartItemList;
+    }
+
+    public void setBookToCartItemList(List<BookToCartItem> bookToCartItemList) {
+        this.bookToCartItemList = bookToCartItemList;
+    }
+
+
 }

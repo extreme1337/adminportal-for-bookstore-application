@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 public class Payment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -15,10 +16,10 @@ public class Payment {
     private int cvc;
     private String holderName;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE)
     private Order order;
 
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "userPayment")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "userPayment")
     private UserBilling userBilling;
 
     public Long getId() {
@@ -100,4 +101,6 @@ public class Payment {
     public void setUserBilling(UserBilling userBilling) {
         this.userBilling = userBilling;
     }
+
+
 }

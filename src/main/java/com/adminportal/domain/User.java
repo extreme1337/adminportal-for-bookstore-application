@@ -29,11 +29,14 @@ public class User implements UserDetails{
     private String phone;
     private boolean enabled=true;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private ShoppingCart shoppingCart;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserShipping> userShippingList;
 
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserPayment> userPaymentList;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -82,21 +85,6 @@ public class User implements UserDetails{
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    public List<UserShipping> getUserShippingList() {
-        return userShippingList;
-    }
-
-    public void setUserShippingList(List<UserShipping> userShippingList) {
-        this.userShippingList = userShippingList;
-    }
-
-    public List<UserPayment> getUserPaymentList() {
-        return userPaymentList;
-    }
-
-    public void setUserPaymentList(List<UserPayment> userPaymentList) {
-        this.userPaymentList = userPaymentList;
-    }
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
@@ -106,6 +94,28 @@ public class User implements UserDetails{
     }
     public void setUserRoles(Set<UserRole> userRoles) {
         this.userRoles = userRoles;
+    }
+
+
+
+    public List<UserShipping> getUserShippingList() {
+        return userShippingList;
+    }
+    public void setUserShippingList(List<UserShipping> userShippingList) {
+        this.userShippingList = userShippingList;
+    }
+    public List<UserPayment> getUserPaymentList() {
+        return userPaymentList;
+    }
+    public void setUserPaymentList(List<UserPayment> userPaymentList) {
+        this.userPaymentList = userPaymentList;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -134,7 +144,6 @@ public class User implements UserDetails{
     public boolean isEnabled() {
         return enabled;
     }
-
 
 
 }
